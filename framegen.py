@@ -39,13 +39,31 @@ class Post:
         self.image = Image.new('RGB', resolution, color = background_color)
         draw = ImageDraw.Draw(self.image)
 
+        # Drawing post body
+        font = ImageFont.truetype('assets/Roboto-Regular.ttf', int(resolution[0]*0.009375))
+        text = textwrap.wrap(post_object.body, width = 215)
+        lines = len(text)
+
+        center_position = ((resolution[1] / 2) - int(resolution[0]*0.01666666666)*lines) + int(resolution[0]*0.005)
+
+        position = (resolution[0]*0.05, center_position)
+
+        draw.text(
+            position,
+            '\n'.join(text),
+            font = font,
+            fill = (0, 0, 0, 0)
+        )
+
         # Drawing the title
         font = ImageFont.truetype('assets/Roboto-Bold.ttf', int(resolution[0]*0.01666666666))
         text = '\n'.join(textwrap.wrap(post_object.title, width = 120))
         lines = len(text.split('\n'))
 
+        title_position = center_position - resolution[1]*0.05
+
         draw.text(
-            (resolution[0]*0.05, resolution[1]*0.10),
+            (resolution[0]*0.05, center_position - resolution[1]*0.05),
             text,
             font = font,
             fill = (0, 0, 0, 0)
@@ -55,22 +73,11 @@ class Post:
         font = ImageFont.truetype('assets/Roboto-Italic.ttf', int(resolution[0]*0.01041666))
         text = post_object.author
 
+        author_position = title_position - resolution[1]*0.013
+
         draw.text(
-            (resolution[0]*0.05, resolution[1]*0.08),
+            (resolution[0]*0.05, author_position),
             text,
             font = font,
             fill = (125, 125, 125, 0)
-        )
-
-        # Drawing post body
-        font = ImageFont.truetype('assets/Roboto-Regular.ttf', int(resolution[0]*0.009375))
-        text = textwrap.wrap(post_object.body, width = 215)
-
-        position = (resolution[0]*0.05, ((resolution[1]*0.08)*1.5) + int(resolution[0]*0.01666666666)*lines)
-
-        draw.text(
-            position,
-            '\n'.join(text),
-            font = font,
-            fill = (0, 0, 0, 0)
         )
