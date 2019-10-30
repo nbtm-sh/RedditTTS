@@ -39,12 +39,14 @@ class Post:
         self.image = Image.new('RGB', resolution, color = background_color)
         draw = ImageDraw.Draw(self.image)
 
+        body_font_size = int(resolution[0]*0.009375)
+
         # Drawing post body
-        font = ImageFont.truetype('assets/Roboto-Regular.ttf', int(resolution[0]*0.009375))
+        font = ImageFont.truetype('assets/Roboto-Regular.ttf', body_font_size)
         text = textwrap.wrap(post_object.body, width = 215)
         lines = len(text)
 
-        center_position = ((resolution[1] / 2) - int(resolution[0]*0.01666666666)*lines) + int(resolution[0]*0.005)
+        center_position = (resolution[1]/2) - ((lines*body_font_size) / 2)
 
         position = (resolution[0]*0.05, center_position)
 
