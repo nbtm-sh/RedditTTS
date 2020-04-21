@@ -9,6 +9,7 @@ For lazily creating the reddit videos you see all over youtube
 ## Creating videos
 You will use the `videogen.py` script to create the videos. Edit the first few lines of the file and run the script to create the video.
 ```python
+# videogen.py
 sub = reddit.Subreddit('<subreddit>', reddit.Listing.<Listing>)
 
 for i in range(post_count):
