@@ -1,5 +1,5 @@
 # RedditTTS
-For lazily creating the reddit videos you see all over youtube
+For lazily creating the reddit videos you see all over youtube. This entire thing was made to spite the people who make those videos :)
 
 ## Dependencies
 * moviepy
